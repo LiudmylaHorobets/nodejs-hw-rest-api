@@ -1,7 +1,7 @@
-const app = require("./app");
 const mongoose = require("mongoose");
+const app = require("./app");
 
-const { DB_HOST, PORT = 3000 } =
+const DB_HOST =
   "mongodb+srv://user_goit:10y4rlyn4XqJy2uu@cluster0.hb4g0oz.mongodb.net/contacts_reader?retryWrites=true&w=majority";
 
 mongoose.set("strictQuery", true);
@@ -9,7 +9,7 @@ mongoose.set("strictQuery", true);
 mongoose
   .connect(DB_HOST)
   .then(() => {
-    app.listen(PORT, () => console.log("Database connection successful"));
+    app.listen(3000);
   })
   .catch((error) => {
     console.log(error.message);
