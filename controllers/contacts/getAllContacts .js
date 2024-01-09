@@ -7,6 +7,4 @@ const getAllContacts = async (req, res) => {
   res.json(result);
 };
 
-module.exports = {
-  getAllContacts: ctrlWrapper(getAllContacts),
-};
+module.exports = ctrlWrapper(getAllContacts);

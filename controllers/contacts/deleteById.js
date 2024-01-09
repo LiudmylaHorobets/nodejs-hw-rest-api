@@ -13,6 +13,4 @@ const deleteById = async (req, res) => {
   });
 };
 
-module.exports = {
-  deleteById: ctrlWrapper(deleteById),
-};
+module.exports = ctrlWrapper(deleteById);
