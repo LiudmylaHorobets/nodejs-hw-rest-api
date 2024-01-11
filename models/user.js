@@ -16,16 +16,21 @@ const userSchema = new Schema(
       type: String,
       match: emailRegexp,
       unique: true,
-      required: [true, "Email is required"],
+      required: true,
     },
     password: {
       type: String,
       minlength: 6,
-      required: [true, "Set password for user"],
+      required: true,
+    },
+    token: {
+      type: String,
+      default: "",
     },
   },
-  { versionKey: false, timeseries: true }
+  { versionKey: false, timestamps: true }
 );
+
 userSchema.post("save", handleMongooseError);
 
 const registerSchema = Joi.object({
