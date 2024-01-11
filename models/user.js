@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
-const { handleMongooseError } = require("../middlewares");
+const handleMongooseError = require("../middlewares/handleMongooseError");
 
 const emailRegexp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -15,13 +15,18 @@ const userSchema = new Schema(
     email: {
       type: String,
       match: emailRegexp,
+      required: [true, "Email is required"],
       unique: true,
-      required: true,
     },
     password: {
       type: String,
       minlength: 6,
-      required: true,
+      required: [true, "Set password for user"],
+    },
+    subscription: {
+      type: String,
+      enum: ["starter", "pro", "business"],
+      default: "starter",
     },
     token: {
       type: String,
